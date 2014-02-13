@@ -1,0 +1,3 @@
+	@$(CXX) $(SPL_CXXFLAGS) -o bin/com.test.cplusplus.Main-a.dpe -fPIC -shared $(PEcom.test.cplusplus.Main-a) $(SPL_LDFLAGS)build/pe/BeJwzDS7ILy2JBwAJ_1gKw.o \
+	    build/operator/Spout.o \
+	    build/type/BeJwrMcxxMylLzCkGAA_0HANC.o 

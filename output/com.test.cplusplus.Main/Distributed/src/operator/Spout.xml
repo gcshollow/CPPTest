@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<operatorInstanceModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/operator/instance" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <context>
+    <kind>spl.utility::Beacon</kind>
+    <class>Spout</class>
+    <operatorModelDirectory>/opt/ibm/InfoSphereStreams/toolkits/spl/spl/utility/Beacon</operatorModelDirectory>
+    <applicationDirectory>/home/streams/Workspace/NASDAQ/Test</applicationDirectory>
+    <dataDirectory>/home/streams/Workspace/NASDAQ/Test/data</dataDirectory>
+    <outputDirectory>/home/streams/Workspace/NASDAQ/Test/output/com.test.cplusplus.Main/Distributed</outputDirectory>
+    <optimized>false</optimized>
+    <verbose>false</verbose>
+    <networkByteOrdering>false</networkByteOrdering>
+    <codeBeautification>false</codeBeautification>
+    <includes>
+      <include>"../type/BeJwrMcxxMylLzCkGAA_0HANC.h"</include>
+    </includes>
+    <stateVariables/>
+    <runtimeConstants>
+      <runtimeConstant>
+        <name>lit$0</name>
+        <cppType>SPL::uint32</cppType>
+        <splType>uint32</splType>
+        <value>1000</value>
+      </runtimeConstant>
+      <runtimeConstant>
+        <name>lit$1</name>
+        <cppType>SPL::list&lt;SPL::float64 &gt;</cppType>
+        <splType>list&lt;float64&gt;</splType>
+        <value>[1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]</value>
+      </runtimeConstant>
+    </runtimeConstants>
+    <sourceLocation>
+      <file>com.test.cplusplus/Main.spl</file>
+      <line>5</line>
+      <column>2</column>
+    </sourceLocation>
+    <productVersion>3.0.0.0</productVersion>
+    <checkpointKind>none</checkpointKind>
+  </context>
+
+  <parameters>
+    <parameter>
+      <name>iterations</name>
+      <values>
+        <value>
+          <cppType>SPL::uint32</cppType>
+          <splType>uint32</splType>
+          <hasRuntimeConstant>true</hasRuntimeConstant>
+          <cppExpression>lit$0</cppExpression>
+          <splExpression>1000</splExpression>
+          <hasFunctions>false</hasFunctions>
+          <hasSideEffects>false</hasSideEffects>
+          <hasStreamAttributes>false</hasStreamAttributes>
+          <parameterExpressionMode>AttributeFree</parameterExpressionMode>
+          <sourceLocation>
+            <file>com.test.cplusplus/Main.spl</file>
+            <line>8</line>
+            <column>17</column>
+          </sourceLocation>
+        </value>
+      </values>
+      <sourceLocation>
+        <file>com.test.cplusplus/Main.spl</file>
+        <line>8</line>
+        <column>4</column>
+      </sourceLocation>
+    </parameter>
+  </parameters>
+
+  <inputPorts/>
+
+  <outputPorts>
+    <outputPort>
+      <index>0</index>
+      <tupleCppName>oport$0</tupleCppName>
+      <tupleCppType>SPL::BeJwrMcxxMylLzCkGAA_0HANC</tupleCppType>
+      <tupleSPLType>tuple&lt;list&lt;float64&gt; vals&gt;</tupleSPLType>
+      <facade>false</facade>
+      <mutationAllowed>false</mutationAllowed>
+      <sourceLocation>
+        <file>com.test.cplusplus/Main.spl</file>
+        <line>5</line>
+        <column>2</column>
+      </sourceLocation>
+      <attributes>
+        <attribute>
+          <name>vals</name>
+          <cppType>SPL::list&lt;SPL::float64 &gt;</cppType>
+          <splType>list&lt;float64&gt;</splType>
+          <assignment>
+            <sourceLocation>
+              <file>com.test.cplusplus/Main.spl</file>
+              <line>10</line>
+              <column>12</column>
+            </sourceLocation>
+            <outputFunction>AsIs</outputFunction>
+            <values>
+              <value>
+                <cppType>SPL::list&lt;SPL::float64 &gt;</cppType>
+                <splType>list&lt;float64&gt;</splType>
+                <hasRuntimeConstant>true</hasRuntimeConstant>
+                <cppExpression>lit$1</cppExpression>
+                <splExpression>[1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]</splExpression>
+                <hasFunctions>false</hasFunctions>
+                <hasSideEffects>false</hasSideEffects>
+                <hasStreamAttributes>false</hasStreamAttributes>
+                <sourceLocation>
+                  <file>com.test.cplusplus/Main.spl</file>
+                  <line>10</line>
+                  <column>19</column>
+                </sourceLocation>
+              </value>
+            </values>
+          </assignment>
+        </attribute>
+      </attributes>
+      <tuple>
+        <tt:attr name="vals">
+          <tt:list elementType="float64"/>
+        </tt:attr>
+      </tuple>
+      <finalPunctuationPortScope/>
+    </outputPort>
+  </outputPorts>
+
+</operatorInstanceModel>

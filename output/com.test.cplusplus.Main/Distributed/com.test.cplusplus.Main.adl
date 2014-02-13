@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application" name="com.test.cplusplus::Main.appset" productVersion="3.0.0.0" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <description>com.test.cplusplus::Main application set</description>
+
+  <application applicationDirectory="../../../." applicationScope="Default" checkpointDirectory="../../../data/ckpt" dataDirectory="../../../data" name="com.test.cplusplus::Main" outputDirectory="/home/streams/Workspace/NASDAQ/Test/output/com.test.cplusplus.Main/Distributed" version="1.0.0">
+    <libraries/>
+    <hostpools>
+      <hostpool index="0" membershipMode="shared" name="$default"/>
+    </hostpools>
+    <tupleTypes>
+      <tupleType index="0">
+        <attribute name="vals" type="list&lt;float64>"/>
+        <tuple>
+          <tt:attr name="vals">
+            <tt:list elementType="float64"/>
+          </tt:attr>
+        </tuple>
+      </tupleType>
+      <tupleType index="1">
+        <attribute name="inv" type="list&lt;float64>"/>
+        <tuple>
+          <tt:attr name="inv">
+            <tt:list elementType="float64"/>
+          </tt:attr>
+        </tuple>
+      </tupleType>
+      <tupleType index="2">
+        <attribute name="notused" type="int32"/>
+        <tuple>
+          <tt:attr name="notused" type="int32"/>
+        </tuple>
+      </tupleType>
+    </tupleTypes>
+    <pes>
+      <pe class="BeJwzDS7ILy2JBwAJ_1gKw" index="0" language="C++" optimized="false" relocatable="false" restartable="false">
+        <envVars/>
+        <executable digest="I7t8SwSAqkPmS6rT+ORuSNT/13Y=" dynamicLoad="true">
+          <wrapper>none</wrapper>
+          <executableUri>bin/com.test.cplusplus.Main-a.dpe</executableUri>
+          <arguments/>
+          <dependencies/>
+        </executable>
+        <operInstances>
+          <operInstance class="Spout" definitionIndex="0" index="0" name="Spout" singleThreadedOnInputs="true" singleThreadedOnOutputs="true">
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="1000"/>
+              <runtimeConstant name="lit$1" value="[1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]"/>
+            </runtimeConstants>
+            <inputPorts/>
+            <outputPorts>
+              <outputPort index="0" isMutable="false" name="Spout" streamName="Spout" tupleTypeIndex="0" viewable="true">
+                <interPeConnection iportIndex="0" operInstanceIndex="1"/>
+              </outputPort>
+            </outputPorts>
+          </operInstance>
+        </operInstances>
+        <tracing level="error"/>
+        <inputPorts/>
+        <outputPorts>
+          <outputPort encoding="LE" index="0" singleThreadedOnOutput="true" transport="TCP" tupleTypeIndex="0">
+            <staticConnections>
+              <staticConnection iportIndex="0" peIndex="1"/>
+            </staticConnections>
+            <operInstanceConnection operInstanceIndex="0" oportIndex="0"/>
+          </outputPort>
+        </outputPorts>
+      </pe>
+      <pe class="BeJwz98wrSy0qTo0HABBJANz" index="1" language="C++" optimized="false" relocatable="false" restartable="false">
+        <envVars/>
+        <executable digest="pllkre719Ne3UR/SXjEjdEBFNho=" dynamicLoad="true">
+          <wrapper>none</wrapper>
+          <executableUri>bin/com.test.cplusplus.Main-b.dpe</executableUri>
+          <arguments/>
+          <dependencies/>
+        </executable>
+        <operInstances>
+          <operInstance class="Inverse" definitionIndex="1" index="1" name="Inverse" singleThreadedOnInputs="true" singleThreadedOnOutputs="false">
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <inputPorts>
+              <inputPort index="0" isMutable="true" name="Spout" tupleTypeIndex="0">
+                <interPeConnection operInstanceIndex="0" oportIndex="0"/>
+              </inputPort>
+            </inputPorts>
+            <outputPorts>
+              <outputPort index="0" isMutable="false" name="Inverse" streamName="Inverse" tupleTypeIndex="1" viewable="true">
+                <interPeConnection iportIndex="0" operInstanceIndex="2"/>
+              </outputPort>
+            </outputPorts>
+          </operInstance>
+        </operInstances>
+        <tracing level="error"/>
+        <inputPorts>
+          <inputPort encoding="LE" index="0" transport="TCP" tupleTypeIndex="0">
+            <staticConnections>
+              <staticConnection oportIndex="0" peIndex="0"/>
+            </staticConnections>
+            <operInstanceConnection iportIndex="0" operInstanceIndex="1"/>
+          </inputPort>
+        </inputPorts>
+        <outputPorts>
+          <outputPort encoding="LE" index="0" singleThreadedOnOutput="false" transport="TCP" tupleTypeIndex="1">
+            <staticConnections>
+              <staticConnection iportIndex="0" peIndex="2"/>
+            </staticConnections>
+            <operInstanceConnection operInstanceIndex="1" oportIndex="0"/>
+          </outputPort>
+        </outputPorts>
+      </pe>
+      <pe class="BeJwzDyjKzCtJLYoHABB0AN7" index="2" language="C++" optimized="false" relocatable="false" restartable="false">
+        <envVars/>
+        <executable digest="xLIt0FJG/M8+PSlHc+5ehJ0fDrQ=" dynamicLoad="true">
+          <wrapper>none</wrapper>
+          <executableUri>bin/com.test.cplusplus.Main-c.dpe</executableUri>
+          <arguments/>
+          <dependencies/>
+        </executable>
+        <operInstances>
+          <operInstance class="Printer" definitionIndex="2" index="2" name="Printer" singleThreadedOnInputs="true" singleThreadedOnOutputs="true">
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <inputPorts>
+              <inputPort index="0" isMutable="true" name="Inverse" tupleTypeIndex="1">
+                <interPeConnection operInstanceIndex="1" oportIndex="0"/>
+              </inputPort>
+            </inputPorts>
+            <outputPorts>
+              <outputPort index="0" isMutable="true" name="Printer" streamName="Printer" tupleTypeIndex="2" viewable="true"/>
+            </outputPorts>
+          </operInstance>
+        </operInstances>
+        <tracing level="error"/>
+        <inputPorts>
+          <inputPort encoding="LE" index="0" transport="TCP" tupleTypeIndex="1">
+            <staticConnections>
+              <staticConnection oportIndex="0" peIndex="1"/>
+            </staticConnections>
+            <operInstanceConnection iportIndex="0" operInstanceIndex="2"/>
+          </inputPort>
+        </inputPorts>
+        <outputPorts/>
+      </pe>
+    </pes>
+    <operDefinitions>
+      <operDefinition index="0" kind="spl.utility::Beacon"/>
+      <operDefinition index="1" kind="com.test.cplusplus::CplusplusTest"/>
+      <operDefinition index="2" kind="spl.utility::Custom"/>
+    </operDefinitions>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///home/streams/Workspace/NASDAQ/Test/com.test.cplusplus/Main.spl"/>
+      </sourceUris>
+      <compositeOpers>
+        <compositeOper endLine="22" index="0" kind="com.test.cplusplus::Main" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="3" toolkitIndex="0">
+          <description>com.test.cplusplus::Main Composite</description>
+        </compositeOper>
+      </compositeOpers>
+      <compositeOperInstances>
+        <compositeOperInstance compositeOperIndex="0" endLine="22" index="3" name="com.test.cplusplus::Main" sourceIndex="0" startLine="3">
+          <primitiveOperInstance endLine="14" index="0" kind="spl.utility::Beacon" name="Spout" sourceIndex="0" startLine="5" toolkitIndex="13">
+            <outputPorts>
+              <port index="0">
+                <connections>
+                  <connection operIndex="1" operName="Inverse" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+          </primitiveOperInstance>
+          <primitiveOperInstance endLine="16" index="1" kind="com.test.cplusplus::CplusplusTest" name="Inverse" sourceIndex="0" startLine="16" toolkitIndex="0">
+            <inputPorts>
+              <port index="0">
+                <connections>
+                  <connection operIndex="0" operName="Spout" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port index="0">
+                <connections>
+                  <connection operIndex="2" operName="Printer" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+          </primitiveOperInstance>
+          <primitiveOperInstance endLine="21" index="2" kind="spl.utility::Custom" name="Printer" sourceIndex="0" startLine="18" toolkitIndex="13">
+            <inputPorts>
+              <port index="0">
+                <connections>
+                  <connection operIndex="1" operName="Inverse" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port index="0"/>
+            </outputPorts>
+          </primitiveOperInstance>
+        </compositeOperInstance>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="Test" uri="file:///home/streams/Workspace/NASDAQ/Test" version="1.0.0"/>
+      <toolkit index="1" name="com.ibm.streams.bigdata" uri="file:///opt/ibm/InfoSphereStreams/toolkits/com.ibm.streams.bigdata" version="1.0.1"/>
+      <toolkit index="2" name="com.ibm.streams.cep" uri="file:///opt/ibm/InfoSphereStreams/toolkits/com.ibm.streams.cep" version="1.0.0"/>
+      <toolkit index="3" name="com.ibm.streams.db" uri="file:///opt/ibm/InfoSphereStreams/toolkits/com.ibm.streams.db" version="1.0.0"/>
+      <toolkit index="4" name="com.ibm.streams.etl.datastage" uri="file:///opt/ibm/InfoSphereStreams/toolkits/com.ibm.streams.etl" version="1.0.0"/>
+      <toolkit index="5" name="com.ibm.streams.financial" uri="file:///opt/ibm/InfoSphereStreams/toolkits/com.ibm.streams.financial" version="1.0.0"/>
+      <toolkit index="6" name="com.ibm.streams.geospatial" uri="file:///opt/ibm/InfoSphereStreams/toolkits/com.ibm.streams.geospatial" version="1.0.0"/>
+      <toolkit index="7" name="com.ibm.streams.inet" uri="file:///opt/ibm/InfoSphereStreams/toolkits/com.ibm.streams.inet" version="1.0.0"/>
+      <toolkit index="8" name="com.ibm.streams.messaging.xms" uri="file:///opt/ibm/InfoSphereStreams/toolkits/com.ibm.streams.messaging" version="1.0.0"/>
+      <toolkit index="9" name="com.ibm.streams.mining" uri="file:///opt/ibm/InfoSphereStreams/toolkits/com.ibm.streams.mining" version="1.0.0"/>
+      <toolkit index="10" name="com.ibm.streams.text" uri="file:///opt/ibm/InfoSphereStreams/toolkits/com.ibm.streams.text" version="1.0.1"/>
+      <toolkit index="11" name="com.ibm.streams.text_deprecated" uri="file:///opt/ibm/InfoSphereStreams/toolkits/deprecated/com.ibm.streams.text_deprecated" version="1.0.1"/>
+      <toolkit index="12" name="com.ibm.streams.timeseries" uri="file:///opt/ibm/InfoSphereStreams/toolkits/com.ibm.streams.timeseries" version="1.0.0"/>
+      <toolkit index="13" name="spl" uri="file:///opt/ibm/InfoSphereStreams/toolkits/spl" version="1.1"/>
+    </toolkits>
+  </application>
+
+</applicationSet>

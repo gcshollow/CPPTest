@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<operatorInstanceModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/operator/instance" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <context>
+    <kind>spl.utility::Custom</kind>
+    <class>Printer</class>
+    <operatorModelDirectory>/opt/ibm/InfoSphereStreams/toolkits/spl/spl/utility/Custom</operatorModelDirectory>
+    <applicationDirectory>/home/streams/Workspace/NASDAQ/Test</applicationDirectory>
+    <dataDirectory>/home/streams/Workspace/NASDAQ/Test/data</dataDirectory>
+    <outputDirectory>/home/streams/Workspace/NASDAQ/Test/output/com.test.cplusplus.Main/Distributed</outputDirectory>
+    <optimized>false</optimized>
+    <verbose>false</verbose>
+    <networkByteOrdering>false</networkByteOrdering>
+    <codeBeautification>false</codeBeautification>
+    <includes>
+      <include>"../type/BeJwrMcw0z8svKS1OTQEAGJUEBI.h"</include>
+      <include>"../type/BeJwrMcxxM87MKwMADD4CDY.h"</include>
+    </includes>
+    <stateVariables/>
+    <runtimeConstants/>
+    <sourceLocation>
+      <file>com.test.cplusplus/Main.spl</file>
+      <line>15</line>
+      <column>2</column>
+    </sourceLocation>
+    <productVersion>3.0.0.0</productVersion>
+    <checkpointKind>none</checkpointKind>
+  </context>
+
+  <parameters/>
+
+  <inputPorts>
+    <inputPort>
+      <index>0</index>
+      <tupleCppName>iport$0</tupleCppName>
+      <tupleCppType>SPL::BeJwrMcxxM87MKwMADD4CDY</tupleCppType>
+      <tupleSPLType>tuple&lt;list&lt;float64&gt; inv&gt;</tupleSPLType>
+      <facade>false</facade>
+      <mutationAllowed>true</mutationAllowed>
+      <sourceLocation>
+        <file>com.test.cplusplus/Main.spl</file>
+        <line>15</line>
+        <column>41</column>
+      </sourceLocation>
+      <tupleLogic>::SPL::Functions::Utility::println(iport$0.get_inv());
+</tupleLogic>
+      <attributes>
+        <attribute>
+          <name>inv</name>
+          <cppType>SPL::list&lt;SPL::float64 &gt;</cppType>
+          <splType>list&lt;float64&gt;</splType>
+        </attribute>
+      </attributes>
+      <tuple>
+        <tt:attr name="inv">
+          <tt:list elementType="float64"/>
+        </tt:attr>
+      </tuple>
+    </inputPort>
+  </inputPorts>
+
+  <outputPorts>
+    <outputPort>
+      <index>0</index>
+      <tupleCppName>oport$0</tupleCppName>
+      <tupleCppType>SPL::BeJwrMcw0z8svKS1OTQEAGJUEBI</tupleCppType>
+      <tupleSPLType>tuple&lt;int32 notused&gt;</tupleSPLType>
+      <facade>false</facade>
+      <mutationAllowed>true</mutationAllowed>
+      <sourceLocation>
+        <file>com.test.cplusplus/Main.spl</file>
+        <line>15</line>
+        <column>2</column>
+      </sourceLocation>
+      <attributes>
+        <attribute>
+          <name>notused</name>
+          <cppType>SPL::int32</cppType>
+          <splType>int32</splType>
+        </attribute>
+      </attributes>
+      <tuple>
+        <tt:attr name="notused" type="int32"/>
+      </tuple>
+      <finalPunctuationPortScope>
+        <port>0</port>
+      </finalPunctuationPortScope>
+    </outputPort>
+  </outputPorts>
+
+</operatorInstanceModel>

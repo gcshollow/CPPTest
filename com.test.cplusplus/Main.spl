@@ -1,0 +1,22 @@
+namespace com.test.cplusplus;
+
+composite Main {
+graph
+	stream<list<float64> vals> Spout = Beacon()
+	{
+		param
+			iterations : 1000u ;
+		output
+			Spout : vals = [1.0,0.0,0.0,0.0,
+							0.0,1.0,0.0,0.0,
+							0.0,0.0,1.0,0.0,
+							0.0,0.0,0.0,1.0];
+	}
+
+	stream<list<float64> inv> Inverse = CplusplusTest(Spout){}
+	
+	stream<int32 notused> Printer = Custom(Inverse){
+	logic
+	onTuple Inverse : println(Inverse.inv);
+	}
+}

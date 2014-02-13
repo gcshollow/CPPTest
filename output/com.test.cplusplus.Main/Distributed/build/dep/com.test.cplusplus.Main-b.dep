@@ -1,0 +1,4 @@
+	@$(CXX) $(SPL_CXXFLAGS) -o bin/com.test.cplusplus.Main-b.dpe -fPIC -shared $(PEcom.test.cplusplus.Main-b) $(SPL_LDFLAGS)build/pe/BeJwz98wrSy0qTo0HABBJANz.o \
+	    build/operator/Inverse.o \
+	    build/type/BeJwrMcxxMylLzCkGAA_0HANC.o \
+	    build/type/BeJwrMcxxM87MKwMADD4CDY.o 

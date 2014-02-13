@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<tupleModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/tuple" class="BeJwrMcxxM87MKwMADD4CDY" equalitySupported="true" facade="false" splType="tuple&lt;list&lt;float64> inv>" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <headers/>
+
+  <attributes>
+    <attribute>
+      <name>inv</name>
+      <cppType>SPL::list&lt;SPL::float64 &gt;</cppType>
+      <splType>list&lt;float64&gt;</splType>
+    </attribute>
+  </attributes>
+
+</tupleModel>
