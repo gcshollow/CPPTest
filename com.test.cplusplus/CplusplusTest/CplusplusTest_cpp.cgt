@@ -1,110 +1,67 @@
-/* Additional includes go here */
-
-
-
 #pragma SPL_NON_GENERIC_OPERATOR_IMPLEMENTATION_PROLOGUE
 
-// Constructor
+//My BS function
+double testing(double B[]){
+    double hold = 5.0;
+    return hold;
+}
+
+
 MY_OPERATOR::MY_OPERATOR()
 {
-    // Initialization code goes here    
+  
 }
 
-// Destructor
+
 MY_OPERATOR::~MY_OPERATOR() 
 {
-    // Finalization code goes here
+
 }
 
-// Notify port readiness
+
 void MY_OPERATOR::allPortsReady() 
 {
-    // Notifies that all ports are ready. No tuples should be submitted before
-    // this. Source operators can use this method to spawn threads.
 
-    /*
-      createThreads(1); // Create source thread
-    */
 }
  
-// Notify pending shutdown
+
 void MY_OPERATOR::prepareToShutdown() 
 {
-    // This is an asynchronous call
 }
 
-// Processing for source and threaded operators   
+
 void MY_OPERATOR::process(uint32_t idx)
 {
-    // A typical implementation will loop until shutdown
-    /*
-      while(!getPE().getShutdownRequested()) {
-          // do work ...
-      }
-    */
+ 
 }
 
-// Tuple processing for mutating ports 
+
 void MY_OPERATOR::process(Tuple & tuple, uint32_t port)
 {
-    // Sample submit code
-    /* 
-      submit(otuple, 0); // submit to output port 0
-    */
-    // Sample cast code
-    /*
-    switch(port) {
-    case 0: { 
-      IPort0Type & ituple = static_cast<IPort0Type&>(tuple);
-      ...
-    } break;
-    case 1: { 
-      IPort1Type & ituple = static_cast<IPort1Type&>(tuple);
-      ...
-    } break;
-    default: ...
+    IPort0Type & ituple = static_cast<IPort0Type &>(tuple);
+    list<float64>holdList = ituple.get_vals();
+    double *B = &(holdList[0]);
+    list<float64>newList(holdList.size());
+    for(int i =0;i<holdList.size();i++){
+        newList[i] = B[i];
     }
-    */
+    OPort0Type otuple;
+    otuple.set_inv(newList);
+    
+    double out = testing(B);
+    printf("%f",out);
+    
+    submit(otuple,0);
 }
 
-// Tuple processing for non-mutating ports
+
 void MY_OPERATOR::process(Tuple const & tuple, uint32_t port)
 {
-    // Sample submit code
-    
-      IPort0Type ituple;
-      list<float64> newList = ituple.get_vals();
-      OPort0Type otuple;
-      double doubleHolder[] = (double)newList;
-      otuple.inv = inverse(doubleHolder);
-      submit(otuple, 0); // submit to output port 0
-    
-    // Sample cast code
-    /*
-    switch(port) {
-    case 0: { 
-      IPort0Type const & ituple = static_cast<IPort0Type const&>(tuple);
-      ...
-    } break;
-    case 1: { 
-      IPort1Type const & ituple = static_cast<IPort1Type const&>(tuple);
-      ...
-    } break;
-    default: ...
-    }
-    */
 }
 
-// Punctuation processing
+
 void MY_OPERATOR::process(Punctuation const & punct, uint32_t port)
 {
-    /*
-      if(punct==Punctuation::WindowMarker) {
-        // ...;
-      } else if(punct==Punctuation::FinalMarker) {
-        // ...;
-      }
-    */
 }
 
 #pragma SPL_NON_GENERIC_OPERATOR_IMPLEMENTATION_EPILOGUE
